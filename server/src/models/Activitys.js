@@ -4,7 +4,7 @@ module.exports = (sequelize)=>{
 sequelize.define("Activity",{
     id:{
         type:DataTypes.INTEGER,
-        allowNull: false,
+        // allowNull: false,
         unique:true,
         primaryKey:true,
         autoIncrement:true
@@ -23,7 +23,7 @@ sequelize.define("Activity",{
         type: DataTypes.INTEGER,
     },
     season:{
-        type:DataTypes.ENUM("Venaro","Otoño","Invierno","Verano"),
+        type:DataTypes.ENUM("Verano","Otoño","Invierno","Primavera"),
         allowNull:false
     }
 });

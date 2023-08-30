@@ -1,0 +1,61 @@
+/* Estilos para el contenedor principal */
+.formlogin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilos para el contenedor de la imagen */
+.formlogin > div:first-child {
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.formlogin > div:first-child img {
+  width: 100%;
+  height: auto;
+}
+
+/* Estilos para el contenedor de los inputs y el botón */
+.formlogin > div:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 0, 255, 0.5);
+  border: 2px solid #800080;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1; /* Asegura que el contenedor esté sobre la imagen */
+}
+
+/* Estilos para los campos de entrada */
+.formlogin input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Estilos para el botón */
+.formlogin button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.title {
+  font-family: 'Yacult', sans-serif;
+  color: #00ffff; /* Cambia el color a azul fosforescente */
+  text-align: center;
+}

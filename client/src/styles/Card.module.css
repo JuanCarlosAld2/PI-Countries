@@ -1,5 +1,6 @@
 .card {
-  border: 6px solid rgba(128, 0, 128, 0.4);
+  border: 6px solid rgba(128, 0, 128, 0.4); /* Borde morado transparente */
+  background-color: rgba(128, 0, 128, 0.2); /* Color morado transparente */
   border-radius: 10px;
   display: inline-block;
   width: 300px;
@@ -24,7 +25,7 @@
 
 .card:hover img {
   transform: translateY(-5px); /* Mueve la imagen hacia abajo */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra para efecto de elevación */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Sombra para efecto de elevación */
 }
 
 .card dl {

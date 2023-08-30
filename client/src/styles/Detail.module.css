@@ -1,0 +1,65 @@
+.card {
+    background-color: rgba(144, 238, 144, 0.2); /* Color verde transparente */
+    border: 6px solid #008000; /* Borde verde más fuerte */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    position: relative; /* Agregamos posición relativa para poder posicionar el botón de manera absoluta dentro de este contenedor */
+    padding-bottom: 15px
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease; /* Transiciones para efectos */
+}
+
+.card img:hover {
+    transform: translateY(-5px); /* Mueve la imagen hacia arriba */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Sombra para efecto de elevación */
+    filter: wave(5px 50px); /* Efecto ondulado */
+}
+
+.card dl {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.card dt {
+    font-weight: bold;
+}
+
+.card dd {
+    margin: 0;
+}
+
+.card button {
+    /* Estilo para el botón */
+    padding: 5px 10px; /* Ajusta el espaciado del botón */
+    border: none;
+    background-color: #008000;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+
+    /* Posiciona el botón en la parte inferior */
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+}
+
+/* Estilo para el botón cuando se coloca el cursor encima */
+.card button:hover {
+    background-color: #006400;
+}

@@ -1,0 +1,28 @@
+.barranavegacion {
+    position: fixed; /* Fija la barra en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(173, 216, 230, 0.6); /* Color de fondo azul claro transparente */
+    border: 1px solid #00bfff; /* Borde azul */
+    padding: 10px; /* Espaciado interno */
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Estilos para los botones */
+.barranavegacion button {
+    background-color: #00bfff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.barranavegacion button:last-child {
+    margin-right: 0;
+}

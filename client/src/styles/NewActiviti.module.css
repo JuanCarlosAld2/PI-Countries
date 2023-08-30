@@ -1,0 +1,23 @@
+.formulario {
+    background-color: rgba(255, 192, 203, 0.4); /* Color de fondo rosa transparente */
+    border-radius: 10px; /* Bordes redondeados */
+    border: 2px solid #ff1493; /* Borde rosa */
+    padding: 20px; /* Espaciado interno */
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaciado entre campos */
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos personalizados para el select */
+.selectPersonalizado {
+    /* Agrega tus estilos personalizados aquí */
+}
+.custom {
+    color: black;
+}

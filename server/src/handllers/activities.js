@@ -2,16 +2,18 @@ const {Activity} = require('../db');
 
 
 const createActivity = async (req,res) =>{
-    const {	id,name,difficulty,duration,season,paises}= req.body;
+    const {	name,difficulty,duration,season,paises}= req.body;
+    //console.log(typeof (name),typeof (difficulty),typeof(duration),typeof(season),typeof(countries));
+    //console.log(name,difficulty,duration,season,paises);
     try {
-        if(!id || !name || !difficulty || !duration || !season ){
+        if( !name || !difficulty || !duration || !season ){
             return res.status(404).json({message:"insufficient data"})
         };
         if(paises.length === 0){
             return res.status(404).json({message:"it is necessary to enter at least one country"})
         }
         const newAct= await Activity.create({
-            id,name,difficulty,duration,season
+           name,difficulty,duration,season
         });
         await newAct.addCountries(paises);
         res.status(200).json({message:"activity created successfully"});

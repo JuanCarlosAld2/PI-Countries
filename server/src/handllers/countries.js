@@ -35,6 +35,7 @@ const getIdPais = async (req,res)=>{
 
 const getquery = async (req,res) => {
     const {name} = req.query;
+  
     try {
         const allQuery= await infoQue(name)
         if(allQuery.length === 0){
