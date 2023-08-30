@@ -17,12 +17,11 @@ export default function SearchBar(){
     const activities2 = useSelector((state)=>state.activitiesAll)
     // const uniqueContinents2 = [...new Set(activities2.map((e) => e.name))];
     const options2 = activities2.map((e) => (
-        <option value={e.id} key={e.id}>
+        <option value={e.name} key={e.id}>
             {e.name}
         </option>
     ));
 
-    const countriesActivities = useSelector((state)=>state.countriesActivities)
     
 
     const [idName, setIdName] = useState("");
@@ -61,8 +60,6 @@ export default function SearchBar(){
 
 
     const handleActivities = (e) =>{
-        // console.log(e.target.value);
-        console.log("yaqu",countriesActivities);
         dispatch(filterActivity(e.target.value))
     }
     

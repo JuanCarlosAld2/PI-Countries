@@ -1,4 +1,4 @@
-import { All_CHARACTERS,ID_COUNTRY, CLEAN_DETAIL,SEARCH_COUNTRY,CLEAN_COUNTRIES, ORDER,FILTER, RESET,ALLACTIVITIES,COUNTRY_ACTIVITY,FILTER_ACTIVITY} from './actionsTypes'
+import { All_CHARACTERS,ID_COUNTRY, CLEAN_DETAIL,SEARCH_COUNTRY,CLEAN_COUNTRIES, ORDER,FILTER, RESET,ALLACTIVITIES,FILTER_ACTIVITY} from './actionsTypes'
 
 const initialState = {
     allCountries:[],
@@ -6,7 +6,6 @@ const initialState = {
     countryDetail:{},
     countriesByName:[],
     activitiesAll:[],
-    countriesActivities:[]
 }
 
 const rootReducer = (state= initialState,{type, payload}) =>{
@@ -80,25 +79,21 @@ const rootReducer = (state= initialState,{type, payload}) =>{
                     activitiesAll:payload
 
                 }
-            case COUNTRY_ACTIVITY:
-                return{
-                    ...state,
-                    countriesActivities:[...state.countriesActivities,payload]
-                }
-            case FILTER_ACTIVITY:
-                // eslint-disable-next-line no-case-declarations
-                const filteredCountriesActivities = state.countriesActivities.filter((country) =>
-                    country.activities.some((activity) => activity.id === payload)
-                );
-                    
-                    console.log(filteredCountriesActivities); // Este log muestra los países que tienen la actividad con el ID dado
+                case FILTER_ACTIVITY:
+                    // eslint-disable-next-line no-case-declarations
+                    const filtered = state.allCountries.filter((country) => {
+                      if (country.Activities.length > 0) {
+                        const filter2 = country.Activities.filter((el) => el.name === payload);
+                        return filter2.length > 0; // Devuelve true si hay actividades que coinciden
+                      }
+                      return false; // No hay actividades, no se incluirá el país en el resultado
+                    });
                     
                     return {
                       ...state,
-                      allCountries: filteredCountriesActivities,
-                    };
-                  
-        default:
+                      allCountries: filtered,
+                    };   
+            default:
             return {...state}
     }
 }

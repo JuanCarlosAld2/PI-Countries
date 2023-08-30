@@ -116,30 +116,12 @@ export const allactivities =  () =>{
     }
 }
 
-export const idActivity = (id) => {
-return async (dispatch) =>{
+// export const idActivity = (id) => {
+// return async (dispatch) =>{
 
-}
-}
+// }
+// }
 
-export const countryActivity = (arrid) => {
-
-    return async (dispatch) => {
-        const URL = "http://localhost:3001/countries/";
-        
-        try {
-            
-            const requests = arrid.map(async (el) => await axios(`${URL}${el}`));
-            const responses = await Promise.all(requests);
-            // await console.log("////",responses);
-             const countriesData = await responses.map((response) => response.data);
-            //   await console.log("xxx",countriesData);
-            dispatch({ type: COUNTRY_ACTIVITY, payload: countriesData });
-        } catch (error) {
-            console.log(error.message);
-        }
-    };
-};
 
 export const filterActivity = (id) => {
 return {
@@ -153,7 +135,10 @@ return {
 
 
 
+/*
 
+
+*/
 
 
 

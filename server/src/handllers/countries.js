@@ -1,11 +1,13 @@
-const {Country,Op} = require('../db');
+const {Country,Op,Activity} = require('../db');
 const {infCountACt, infoQue} = require('../controllers/countries');
 
 
 const getAll = async (req,res) =>{
     
     try {
-        const allCount= await Country.findAll();
+        const allCount= await Country.findAll({
+            include: [{ model: Activity }] 
+        });
         if(allCount.length === 0){
             return res.status(404).json({message:"non-existent data"});
         };

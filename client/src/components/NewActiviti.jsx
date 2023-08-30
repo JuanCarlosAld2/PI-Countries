@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Select from 'react-select';
 import { useSelector,useDispatch} from 'react-redux';
 import style from '../styles/NewActiviti.module.css'
-import { createActivity,allactivities,countryActivity  } from "../redux/actions";
+import { createActivity,allactivities,allCharacters } from "../redux/actions";
 
 export default function NewActiviti (){
     const allCountries = useSelector((state)=>state.allCountries)
@@ -58,7 +58,7 @@ export default function NewActiviti (){
         setCountryData({...countryData,id:idUnique})
         await dispatch(createActivity(countryData))
         await dispatch(allactivities())
-        await dispatch(countryActivity(countryData.paises))
+        await dispatch(allCharacters())
         setCountryData({
             name:"",
             difficulty:"",

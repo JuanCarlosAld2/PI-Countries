@@ -9,6 +9,10 @@ export default function Detail(){
     const dispatch = useDispatch();
     const {id} = useParams();
     const Country = useSelector((state)=> state.countryDetail)
+    const all = useSelector((state)=> state.allCountries)
+
+    const mas = all.map((e)=>e.Activities)
+    const resul11= mas.map((e)=>e)
 
     useEffect(()=>{
         dispatch(getCountriesDetail(id))
