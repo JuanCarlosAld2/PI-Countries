@@ -28,6 +28,36 @@ export const validateEmail = (data, setErrors, errors) => {
 
 };
 
+export const validateForm = (data,setErrors,errors) =>{
+
+    if(data.name){
+        if (data.name.length > 10) {
+            setErrors({...errors, name: "el nombre es muy largo"})
+        }else{
+            setErrors({...errors, name:""})
+        }
+    }
+
+    if(data.difficulty){
+        if (data.difficulty < 1 || data.difficulty > 5 ){
+            setErrors({...errors, difficulty:"la difcultad debe ser entre 1 y 5 "})
+        }else{
+            setErrors({...errors, difficulty:""})
+        }
+    }
+
+    if(data.duration){
+        if(data.duration < 30 || data.duration > 120){
+            setErrors({...errors, duration:"la duracion no puede ser menor a 30 m ni mayor a 120 m"})
+        }else{
+            setErrors({...errors, duration: ""})
+        }
+    }
+  
+
+
+}
+
 
 ///podria ser asi 
 

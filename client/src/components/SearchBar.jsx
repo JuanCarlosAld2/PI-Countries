@@ -87,7 +87,7 @@ export default function SearchBar(){
                     <option value="DEFAULT">filter by continent</option>
                     {options}
                 </select>
-                <button onClick={handleReset}>Reset Filter</button>
+                <button onClick={handleReset}>Reset</button>
 
 
                 <select name="activities" onChange={handleActivities} >

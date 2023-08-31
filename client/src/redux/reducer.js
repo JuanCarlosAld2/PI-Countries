@@ -1,4 +1,4 @@
-import { All_CHARACTERS,ID_COUNTRY, CLEAN_DETAIL,SEARCH_COUNTRY,CLEAN_COUNTRIES, ORDER,FILTER, RESET,ALLACTIVITIES,FILTER_ACTIVITY} from './actionsTypes'
+import { All_CHARACTERS,ID_COUNTRY, CLEAN_DETAIL,SEARCH_COUNTRY,CLEAN_COUNTRIES, ORDER,FILTER, RESET,ALLACTIVITIES,FILTER_ACTIVITY,ACTIVITIES_INDIVIDUAL} from './actionsTypes'
 
 const initialState = {
     allCountries:[],
@@ -6,6 +6,7 @@ const initialState = {
     countryDetail:{},
     countriesByName:[],
     activitiesAll:[],
+    showActivity:[]
 }
 
 const rootReducer = (state= initialState,{type, payload}) =>{
@@ -93,6 +94,12 @@ const rootReducer = (state= initialState,{type, payload}) =>{
                       ...state,
                       allCountries: filtered,
                     };   
+                case ACTIVITIES_INDIVIDUAL:
+                    const filterAct= payload.Activities.map((e)=>e)
+                    return{
+                        ...state,
+                        showActivity:filterAct
+                    }
             default:
             return {...state}
     }

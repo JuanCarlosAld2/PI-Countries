@@ -1,4 +1,4 @@
-import { All_CHARACTERS,ID_COUNTRY, CLEAN_DETAIL,SEARCH_COUNTRY,CLEAN_COUNTRIES,ORDER,FILTER,RESET,ALLACTIVITIES,COUNTRY_ACTIVITY,FILTER_ACTIVITY} from './actionsTypes'
+import { All_CHARACTERS,ID_COUNTRY, CLEAN_DETAIL,SEARCH_COUNTRY,CLEAN_COUNTRIES,ORDER,FILTER,RESET,ALLACTIVITIES,FILTER_ACTIVITY,ACTIVITIES_INDIVIDUAL} from './actionsTypes'
 
 import axios from 'axios';
 
@@ -76,7 +76,7 @@ export const createActivity = (activity) =>{
         try {
              const URL = "http://localhost:3001/activities/"
               await axios.post(URL,activity)
-            console.log("datos creados");
+            alert("datos creados");
         } catch (error) {
             console.log(error.message);
         }
@@ -116,11 +116,13 @@ export const allactivities =  () =>{
     }
 }
 
-// export const idActivity = (id) => {
-// return async (dispatch) =>{
-
-// }
-// }
+export const idActivity =  (id) => {
+return async (dispatch) =>{
+    const URL = "http://localhost:3001/countries/"
+    const {data}= await axios(`${URL}${id}`)
+    dispatch({type:ACTIVITIES_INDIVIDUAL, payload:data})
+}
+}
 
 
 export const filterActivity = (id) => {
@@ -129,6 +131,7 @@ return {
     payload:id
 }
 }
+
 
 
 

@@ -1,0 +1,20 @@
+.activitycardcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Separación ligeramente mayor entre las tarjetas */
+}
+
+.activitycard {
+    background-color: rgba(53, 49, 173, 0.4);
+    border: 2px solid rgba(53, 49, 173, 0.8); /* Borde con opacidad */
+    padding: 20px;
+    width: auto;
+    box-sizing: border-box;
+}
+
+
+
+
+
+
+

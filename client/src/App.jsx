@@ -88,7 +88,6 @@ useEffect(() => {
         <Route path={'/activiti'} element={<NewActiviti/>}></Route>
       </Routes>
       
-      
      
     </div>
   )

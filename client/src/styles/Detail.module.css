@@ -1,6 +1,6 @@
 .card {
-    background-color: rgba(144, 238, 144, 0.2); /* Color verde transparente */
-    border: 6px solid #008000; /* Borde verde más fuerte */
+    background-color: rgba(89, 181, 209, 0.573); /* Color verde transparente */
+    border: 6px solid #0e65e6; /* Borde verde más fuerte */
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
@@ -48,7 +48,7 @@
     /* Estilo para el botón */
     padding: 5px 10px; /* Ajusta el espaciado del botón */
     border: none;
-    background-color: #008000;
+    background-color: #b013a369;
     color: white;
     border-radius: 5px;
     cursor: pointer;
@@ -61,5 +61,5 @@
 
 /* Estilo para el botón cuando se coloca el cursor encima */
 .card button:hover {
-    background-color: #006400;
+    background-color: #be2aeb;
 }

@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom"
-import {getCountriesDetail,cleanDetail} from '../redux/actions'
+import {getCountriesDetail,cleanDetail,idActivity} from '../redux/actions'
 import { useDispatch,useSelector} from 'react-redux';
 import { useEffect} from 'react';
 import style from '../styles/Detail.module.css'
+import ActivityDetail from "./ActivityDetail.jsx";
 
 export default function Detail(){
     const dispatch = useDispatch();
     const {id} = useParams();
     const Country = useSelector((state)=> state.countryDetail)
-    const all = useSelector((state)=> state.allCountries)
-
-    const mas = all.map((e)=>e.Activities)
-    const resul11= mas.map((e)=>e)
+    const [showw, setShoww] = useState(false)
+    
+    
+  
 
     useEffect(()=>{
         dispatch(getCountriesDetail(id))
@@ -21,9 +22,15 @@ export default function Detail(){
         }
     },[dispatch, id])
 
-    // const handelerButton = ()=>{
-
-    // }
+     const handelerButton = ()=>{
+      dispatch(idActivity(id))
+      if(showw){
+        setShoww(false)
+      }else{
+        setShoww(true)
+      }
+      
+     }
     return(
           <article className={style.card}>
             <h3>{Country.name}</h3>
@@ -50,9 +57,16 @@ export default function Detail(){
                 <dd>{Country.population}</dd>
               </div>
             </dl>
-            {/* <div>
+            <div>
               <button onClick={handelerButton}>activities</button>
-            </div> */}
+            </div>
+             
+            <div>
+              {
+                showw &&
+                <ActivityDetail />
+              }
+           </div>
             
           </article>
     )

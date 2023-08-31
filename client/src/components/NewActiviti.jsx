@@ -3,8 +3,14 @@ import Select from 'react-select';
 import { useSelector,useDispatch} from 'react-redux';
 import style from '../styles/NewActiviti.module.css'
 import { createActivity,allactivities,allCharacters } from "../redux/actions";
+import {validateForm} from './validations'
+
 
 export default function NewActiviti (){
+    const errorStyle = {
+        color: "red",
+    
+      };
     const allCountries = useSelector((state)=>state.allCountries)
     const COubt = useSelector((state)=>state.countriesActivitis)//////////
     const dispatch =useDispatch();
@@ -23,18 +29,28 @@ export default function NewActiviti (){
         season:"",
         paises:[]
     })
+      const[errors,setErrors]=useState({
+        id:"",
+        name:"",
+        difficulty:"",
+        duration:"",
+        season:"",
+        paises:""
+    })
 
     const [idCountry, setIdCountry]= useState([])
     
     const handleInputs = (e) => {
         const property = e.target.name;
-        // console.log("::",property);
         const value = property === "duration" ? Number(e.target.value) : e.target.value;
     
         setCountryData((prevData) => ({
             ...prevData,
             [property]: value,
         }));
+
+        validateForm({ ...countryData, [property]: value },setErrors,errors)
+
     };
 
     const handleCountryChange = (selectedOptions) => {
@@ -81,17 +97,20 @@ export default function NewActiviti (){
                 <label htmlFor="name">Ingresa una actividad:</label>
                 <input type="text" placeholder="Name" name="name"value={countryData.name} onChange={handleInputs} />
             </div>
+            <span style={errorStyle}>{errors.name}</span>
 
             <div className={style.campo}>   
                 <label htmlFor="dificult">Grado de dificultad:</label>                
                 <input type="number" name="difficulty" min="1" max="5" onChange={handleInputs} value={countryData.difficulty} />   
             </div>
+            <span style={errorStyle}>{errors.difficulty}</span>
 
            <div className={style.campo}>
                 <label htmlFor="duration">Duracion de la actividad en minutos:</label>
                 <input type="text" name="duration" value={countryData.duration} onChange={handleInputs}/>
                 
            </div>
+           <span style={errorStyle}>{errors.duration}</span>
 
             <div className={style.campo}>
                 <label htmlFor="season">Realizar actividade en temporada de:</label>
