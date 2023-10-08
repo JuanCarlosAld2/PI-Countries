@@ -41,7 +41,8 @@ const getquery = async (req,res) => {
     try {
         const allQuery= await infoQue(name)
         if(allQuery.length === 0){
-            return res.status(404).json({message:"non-existent data"});
+            //return res.status(404).json({message:"non-existent data"});
+            return res.status(200).json([]);//modifico a un status 200 par apoder trabajar con la respuesta vacia
         }
         res.json(allQuery)
     } catch (error) {
