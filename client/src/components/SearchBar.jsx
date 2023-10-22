@@ -6,68 +6,82 @@ import {searchCounty,orderCountries,filterCountries,resetFilter, filterActivity}
 import style from '../styles/SearchBar.module.css' 
 
 export default function SearchBar(){
-    const allCountries = useSelector((state)=>state.allCountries)
-    const uniqueContinents = [...new Set(allCountries.map((e) => e.continent))];
-    const options = uniqueContinents.map((continent) => (
-        <option value={continent} key={continent}>
-            {continent}
-        </option>
-    ));
 
-    const activities2 = useSelector((state)=>state.activitiesAll)
-    // const uniqueContinents2 = [...new Set(activities2.map((e) => e.name))];
-    const options2 = activities2.map((e) => (
-        <option value={e.name} key={e.id}>
-            {e.name}
-        </option>
-    ));
+    //Estado globales de redux
+        const respaldoCountries = useSelector((state)=>state.respaldoCountries);
+        const activities2 = useSelector((state)=>state.activitiesAll);
+    
+    //Estado local
+        const [idName, setIdName] = useState("");
+
+    //hooks
+        const dispatch = useDispatch();
+        const navigate = useNavigate();
+        
+        
+    //gerarar opciones de filtrado
+
+        //Por continente
+                 //Gera un array con contienentes unicos (no permite repetidos)
+            const uniqueContinents = [...new Set(respaldoCountries.map((e) => e.continent))];
+            const optionsByContienet = uniqueContinents.map((continent) => (
+                <option value={continent} key={continent}>
+                    {continent}
+                </option>
+            ));
+
+
+        //Por actividad 
+            const optionsByActivities = activities2.map((e) => (
+                <option value={e.name} key={e.id}>
+                    {e.name}
+                </option>
+            ));
 
     
 
-    const [idName, setIdName] = useState("");
-    const dispatch = useDispatch();
-    const navigate = useNavigate()
+    
+    //Manjadores (handlers)
 
-
-    const hanleChange = (e) => {
-        setIdName(e.target.value)
-    }
-
-    const handleButton = (e) =>{
-        e.preventDefault()
-        if(!idName)return null
-        if(Number(idName)){
-            alert("must be the name of a country")
-        }else{
-            dispatch(searchCounty(idName))
-            navigate('/countries')
-        
+        const hanleChange = (e) => { // 
+            setIdName(e.target.value)
         }
-    }
 
-    const handleOrder = (e) =>{
-        const selectedOrder = e.target.value;
-        dispatch(orderCountries(selectedOrder))
-    }
+        const handleButtonSearch = (e) =>{
+            e.preventDefault()
+            if(!idName)return null
+            if(Number(idName)){
+                alert("El nombre debe ser una cadena de texto")
+            }else{
+                dispatch(searchCounty(idName))
+                navigate('/countries')
+            }
+        }
 
-    const handleFilter = (e) =>{
-        dispatch(filterCountries(e.target.value))
-    }
+        const handleOrder = (e) =>{
+            const selectedOrder = e.target.value;
+            dispatch(orderCountries(selectedOrder))
+        }   
 
-    const handleReset = () =>{
-        dispatch(resetFilter())
-    }
+        const filterByContient = (e) =>{
+            dispatch(filterCountries(e.target.value))
+        }
+
+        const handleReset = () =>{
+            dispatch(resetFilter())
+        }
 
 
-    const handleActivities = (e) =>{
-        dispatch(filterActivity(e.target.value))
-    }
+        const handleActivities = (e) =>{
+            dispatch(filterActivity(e.target.value))
+        }
     
     return(
         <nav className={style.barranavegacion}>
             <div>
                 <input type="search" name="name" id="name" value={idName} onChange={hanleChange} />
-                <button onClick={handleButton}>SearchCountry</button>
+                <button onClick={handleButtonSearch}>SearchCountry</button>
+
                 <Link to='/home'>
                     <button>home</button>
                 </Link>
@@ -83,17 +97,18 @@ export default function SearchBar(){
                     <option value="PD">Poblacion Descendente</option>
                 </select>
 
-                <select name="filter" onChange={handleFilter}>
+                <select name="filter" onChange={filterByContient}>
                     <option value="DEFAULT">filter by continent</option>
-                    {options}
+                    {optionsByContienet}
                 </select>
-                <button onClick={handleReset}>Reset</button>
+                
 
 
                 <select name="activities" onChange={handleActivities} >
                     <option value="DEFAULT">select Activity</option>
-                    {options2}
+                    {optionsByActivities}
                 </select>
+                <button onClick={handleReset}>ResetAplication</button>
             </div>       
         </nav>
     )

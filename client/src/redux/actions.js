@@ -49,7 +49,7 @@ export const searchCounty = (idname) => {
         try {
             const URL ="http://localhost:3001/countries/name";
             const {data} = await axios(`${URL}?name=${idname}`)
-            if(data){
+            if(data){ // data es un [] vacio o lleno 
                 dispatch({
                     type:SEARCH_COUNTRY,
                     payload:data

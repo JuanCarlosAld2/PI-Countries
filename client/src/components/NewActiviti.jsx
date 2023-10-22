@@ -7,82 +7,95 @@ import {validateForm} from './validations'
 
 
 export default function NewActiviti (){
+
     const errorStyle = {
         color: "red",
     
       };
-    const allCountries = useSelector((state)=>state.allCountries)
-    const COubt = useSelector((state)=>state.countriesActivitis)//////////
-    const dispatch =useDispatch();
- 
-   const  optionsCountries = allCountries.map((co)=>{
-        return {
-            value: co.id ,label:co.name
-        }
-    }) 
-
-    const [countryData, setCountryData] = useState({
-        id:"",
-        name:"",
-        difficulty:"",
-        duration:"",
-        season:"",
-        paises:[]
-    })
-      const[errors,setErrors]=useState({
-        id:"",
-        name:"",
-        difficulty:"",
-        duration:"",
-        season:"",
-        paises:""
-    })
-
-    const [idCountry, setIdCountry]= useState([])
     
-    const handleInputs = (e) => {
-        const property = e.target.name;
-        const value = property === "duration" ? Number(e.target.value) : e.target.value;
-    
-        setCountryData((prevData) => ({
-            ...prevData,
-            [property]: value,
-        }));
+    //hooks
+        const dispatch =useDispatch();
 
-        validateForm({ ...countryData, [property]: value },setErrors,errors)
+    //Estado global redux
+        const respaldoCountries = useSelector((state)=>state.respaldoCountries);
 
-    };
+    //Estados locales 
 
-    const handleCountryChange = (selectedOptions) => {
-        console.log(selectedOptions);
-        setIdCountry(selectedOptions);
-    };
+        const [idCountry, setIdCountry]= useState([])  
 
-    useEffect(() => {
-        const newPaises = idCountry.map((e) => e.value);
-        setCountryData((prevData) => ({
-            ...prevData,
-            paises: newPaises,
-        }));
-    }, [idCountry]);
-
-    
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        
-        let idUnique= new Date() * Math.floor(Math.random() * 1000)
-        setCountryData({...countryData,id:idUnique})
-        await dispatch(createActivity(countryData))
-        await dispatch(allactivities())
-        await dispatch(allCharacters())
-        setCountryData({
+        const [countryData, setCountryData] = useState({
+            id:"",
             name:"",
             difficulty:"",
             duration:"",
             season:"",
-            paises:[]
+            paises:[] //contiene los idContry 
         })
-        setIdCountry([])
+
+        const[errors,setErrors]=useState({
+            id:"",
+            name:"",
+            difficulty:"",
+            duration:"",
+            season:"",
+            paises:""
+        })
+
+
+   
+
+    //useEffect coloca en countryData.paises el value que se encuentra en idCountry
+        useEffect(() => {
+            const newPaises = idCountry.map((e) => e.value);
+            setCountryData((prevData) => ({
+                ...prevData,
+                paises: newPaises,
+            }));
+        }, [idCountry]);
+ 
+    
+        //genera las opcones que se renderizan en Select
+        const  optionsCountries = respaldoCountries.map((co)=>{
+            return {
+                value: co.id ,label:co.name
+            }
+        }) 
+
+  
+    
+    // handles (manejadores de los inputs)
+        const handleInputs = (e) => {
+            const property = e.target.name;
+            const value = property === "duration" ? Number(e.target.value) : e.target.value;
+            setCountryData((prevData) => ({
+                ...prevData,
+                [property]: value,
+            }));
+            validateForm({ ...countryData, [property]: value },setErrors,errors)
+        };
+
+        const handleCountryChange = (selectedOptions) => {
+            setIdCountry(selectedOptions);
+        };
+    
+        const handleSubmit = async (e) => {
+            e.preventDefault()
+            let idUnique= new Date() * Math.floor(Math.random() * 1000)
+        
+            setCountryData({...countryData,id:idUnique})
+            await dispatch(createActivity(countryData))
+            await dispatch(allactivities())
+            await dispatch(allCharacters())
+
+            setCountryData({
+                name:"",
+                difficulty:"",
+                duration:"",
+                season:"",
+                paises:[]
+            })
+
+            setIdCountry([])
       
     
    

@@ -64,7 +64,10 @@ const rootReducer = (state= initialState,{type, payload}) =>{
                     
                 };
             case FILTER:
-                    const newFilter= state.allCountries.filter((el)=> el.continent === payload);
+                let newFilter = [...state.respaldoCountries];
+                if (payload !== "DEFAULT") {
+                    newFilter = newFilter.filter((el) => el.continent === payload);
+                }
                 return{
                     ...state,
                     allCountries:newFilter
@@ -82,7 +85,7 @@ const rootReducer = (state= initialState,{type, payload}) =>{
                 }
                 case FILTER_ACTIVITY:
                     // eslint-disable-next-line no-case-declarations
-                    const filtered = state.allCountries.filter((country) => {
+                    const filtered = state.respaldoCountries.filter((country) => {
                       if (country.Activities.length > 0) {
                         const filter2 = country.Activities.filter((el) => el.name === payload);
                         return filter2.length > 0; // Devuelve true si hay actividades que coinciden
