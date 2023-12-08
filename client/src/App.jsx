@@ -9,6 +9,7 @@ import SearchBar from './components/SearchBar';
 import Countries from './components/Countries';
 import Login from './components/login';
 import NewActiviti from './components/NewActiviti';
+import { getAccess } from "./services/apiService";
 
 
 
@@ -30,12 +31,21 @@ function App() {
   const EMAIL = 'juan@gmail.com';
   const PASSWORD = 'juan123';
 
-  function login(userData) {
-    if (userData.password === PASSWORD && userData.email === EMAIL) {
-       setAccess(true);
-       navigate('/home');
-    }
- }
+//   function login(userData) {
+//     if (userData.password === PASSWORD && userData.email === EMAIL) {
+//        setAccess(true);
+//        navigate('/home');
+//     }
+//  }
+async function login(userData) {
+  let Access = await getAccess(userData.password, userData.email)
+  if(Access){
+    setAccess(Access)
+    navigate('/home')
+  }
+  console.log(Access);
+ 
+}
   
 useEffect(() => {
    !access && navigate('/');

@@ -23,9 +23,17 @@ module.exports = (sequelize) => {
       allowNull:false,
       unique:true,
     },
-    edad:{
+    age:{
       type:DataTypes.INTEGER,
       allowNull:true,
+    },
+    email:{
+      type:DataTypes.STRING,
+      allowNull:false,
+      unique:true,
+      validate:{
+        isEmail:true
+      }
     },
     password:{
       type:DataTypes.STRING,
@@ -34,6 +42,12 @@ module.exports = (sequelize) => {
     role:{
         type:DataTypes.ENUM('customer', 'administrator'),
         allowNull:false
+    },
+    image:{
+      type:DataTypes.STRING,
+      validate:{
+        isUrl:true
+      }
     }, 
     recoveryToken:{
         type:DataTypes.STRING,

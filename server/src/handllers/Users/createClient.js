@@ -3,10 +3,10 @@ const bcryptjs = require('bcryptjs')
 
 const createClient= async (req,res) =>{
 try {
-    const {name, lastName, nickName, edad, password}= req.body
+    const {name, lastName, nickName, password,email}= req.body
 
-    if(!name || !lastName || !nickName || !edad || !password){
-        return res.status(400).json({message: "falta informacion necesaria"})
+    if(!name || !lastName || !nickName ||  !email || !password ){
+        return res.status(400).json({message: "Todos los campos son requeridos"})
     }
 
     let passwordHash;
@@ -17,11 +17,21 @@ try {
         return res.status(500).json({ message: "Error interno del servidor" });
     }
 
+    const existingEmail = await Users.findOne({ where: { email: email } });
+    if (existingEmail) {
+        return res.status(400).json({ message: "El correo electrónico ya está registrado." });
+    }
+
+    const existingNickName = await Users.findOne({ where: { nickName: nickName } });
+    if (existingNickName) {
+        return res.status(400).json({ message: "Nikname en uso." });
+    }
+
     const newClient = await Users.create({
         name,
         lastName,
         nickName,
-        edad,
+        email,
         password: passwordHash,
         role:"customer"
     })
