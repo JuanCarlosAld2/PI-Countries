@@ -12,8 +12,7 @@ import NewActiviti from './components/NewActiviti';
 import { getAccess } from "./services/apiService";
 
 
-
-
+//variable para delimitar el numero de cartas en home 
 const ITEMS_COUN_PAGE=10;
 function App() {
 
@@ -28,15 +27,8 @@ function App() {
   const [currentPage,setCurrentPage]=useState(0);
 
   const [access,setAccess] =useState(false);
-  const EMAIL = 'juan@gmail.com';
-  const PASSWORD = 'juan123';
 
-//   function login(userData) {
-//     if (userData.password === PASSWORD && userData.email === EMAIL) {
-//        setAccess(true);
-//        navigate('/home');
-//     }
-//  }
+
 async function login(userData) {
   let Access = await getAccess(userData.password, userData.email)
   if(Access){
@@ -104,3 +96,22 @@ useEffect(() => {
 }
 
 export default App
+
+
+
+
+
+
+/// funciones funcionales pero ya no se usan 
+
+//Borrar funcion para ingresar en crudo 
+
+  // const EMAIL = 'juan@gmail.com';
+  // const PASSWORD = 'juan123';
+
+  //   function login(userData) {
+  //     if (userData.password === PASSWORD && userData.email === EMAIL) {
+  //        setAccess(true);
+  //        navigate('/home');
+  //     }
+  //  }

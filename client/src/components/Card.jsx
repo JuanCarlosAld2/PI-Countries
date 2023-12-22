@@ -18,11 +18,6 @@ export default function Card({name,flag,continent,id,population}){
               <dd>{continent}</dd>
             </div>
           </dl>
-          <dl>
-            <div>
-              {population}
-            </div>
-          </dl>
 
         </article>
       );

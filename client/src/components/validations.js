@@ -3,7 +3,7 @@ export const validatepassword = (data, setErrors, errors) => {
         const regexPass = /^(?=.*[0-9])/;
     if (!regexPass.test(data.password)) {
         setErrors({ ...errors, password: "Debe contener al menos un número" });
-    } else if (data.password.length < 6 || data.password.length > 10) {
+    } else if (data.password.length < 6 || data.password.length > 20) { // modifica el tamaño de la contraseña
         setErrors({
             ...errors,
             password: "La contraseña debe tener una longitud entre 6 y 10 caracteres",
