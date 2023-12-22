@@ -63,7 +63,7 @@ const createClient = async (req, res) => {
                 console.error("Error al manejar rol predeterminado:", defaultRoleError);
             }
         }
-
+        //retornare token 
         res.status(200).json(newClient);
     } catch (error) {
         console.error("Error al crear el cliente:", error);

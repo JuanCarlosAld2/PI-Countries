@@ -1,6 +1,8 @@
 const {Users} = require('../../db');
 const bcryptjs = require('bcryptjs')
 
+
+//se debe enviar inofrmacion del usuario
 const getAccess= async (req,res) =>{
 try {
     const {email,password} = req.body;
