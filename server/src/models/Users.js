@@ -39,10 +39,10 @@ module.exports = (sequelize) => {
       type:DataTypes.STRING,
       allowNull:false 
     },
-    role:{
-        type:DataTypes.ENUM('customer', 'administrator'),
-        allowNull:false
-    },
+    // role:{
+    //     type:DataTypes.ENUM('customer', 'administrator'),
+    //     allowNull:false
+    // }, // ELIMINAR CUANDO YA SE ESTA MODIFICA LA FUNCION 
     image:{
       type:DataTypes.STRING,
       validate:{
