@@ -3,6 +3,11 @@ const axios = require('axios')
 const getData =async () =>{
     try {
         const response= await axios.get("http://localhost:5000/countries");
+
+        if (!response.data || !Array.isArray(response.data)) {
+            throw new Error('Invalid response format or empty data.');
+        }
+
         const interacioon = await response.data.map((count)=>{
         const country = {
             id:count.cca3,
@@ -18,7 +23,7 @@ const getData =async () =>{
     });
     return interacioon;
     } catch (error) {
-        throw new Error(`Error fetching data: ${error.message}`);
+        throw new Error(`Error fetching or processing data: ${error.message}`);
     };
 
 };
